@@ -1,0 +1,91 @@
+.balken{
+  background-color: #1B68FF;
+  width: 100%;
+  height: 8px;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.monospaceFont{
+  font-family: monospace;
+  font-size: 13px;
+  color: #888;
+}
+
+.teststyle{
+    background-color: crimson;
+    color: white;
+}
+.example-card {
+    max-width: auto;
+  }
+
+.example-form-field {
+    width: 400px;
+  }
+
+  .example-form-field2 {
+    width: 70px;
+  }
+
+  .test{
+    display: inline;
+  float: left;
+    display:inherit;
+
+  }
+
+  .test2{
+    height: auto; 
+    /*word-break: break-all;   */
+    word-wrap: break-word;
+    white-space: pre-wrap 
+  }
+  .mat-expansion-panel-header {
+    align-items: unset
+  }
+
+mat-panel-description.mat-expansion-panel-header-description {
+  display: block;
+}
+
+span.mat-content {
+  flex:inherit;
+}
+
+.mat-expansion-panel-header-title {
+  flex:inherit;
+}
+
+/*
+  .test{
+    height: auto; 
+    word-wrap: break-word; 
+    width:fit-content;
+    margin-top:17px;
+    margin-left:5px;
+    height:max-content
+  }
+  span{
+    height: auto; 
+    word-wrap: break-word; 
+    
+
+  }
+
+
+.mat-expansion-panel-header {
+  align-items: unset
+}
+
+.ng-star-inserted{
+  display: inline;
+  float: left
+}
+
+mat-panel-description{
+  display:inherit;
+}*/

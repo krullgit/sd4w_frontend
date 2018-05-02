@@ -1,0 +1,110 @@
+<div class="balken"></div>
+<div class="balken" style="width:410px;background-color:#7ca8ff"></div>
+<br/>
+<h1 mat-subheader="mat-subheader">document similarity</h1>
+
+
+<mat-form-field class="example-form-field">
+    <input
+        matInput="matInput"
+        type="text"
+        placeholder="search query"
+        [(ngModel)]="value"
+        aria-label="State"
+        [matAutocomplete]="auto"
+        [formControl]="stateCtrl"/>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let query of filteredStates | async" [value]="query._query">
+            <span>{{ query._query }}</span>
+        </mat-option>
+    </mat-autocomplete>
+    <button
+        mat-button="mat-button"
+        *ngIf="value"
+        matSuffix="matSuffix"
+        mat-icon-button="mat-icon-button"
+        aria-label="Clear"
+        (click)="value=''">
+        <mat-icon>close</mat-icon>
+    </button>
+    <button
+        mat-button="mat-button"
+        *ngIf="value"
+        matSuffix="matSuffix"
+        mat-icon-button="mat-icon-button"
+        aria-label="Clear"
+        (click)="deleteContent();setcurrentValue(value);getSimilarities(value);value=''">
+        <mat-icon>send</mat-icon>
+    </button>
+    
+</mat-form-field>
+<mat-form-field class="example-form-field2">
+    <input
+    matInput="matInput"
+    type="text"
+    placeholder="threshold"
+    [(ngModel)]="sliderValue"/>
+    
+</mat-form-field>
+<mat-form-field class="example-form-field2">
+    <input
+    matInput="matInput"
+    type="text"
+    placeholder="#dokuments"
+    [(ngModel)]="howManyDocuments"/>
+    
+</mat-form-field>
+<br/>
+<!--<button
+    mat-button="mat-button"
+    matSuffix="matSuffix"
+    mat-icon-button="mat-icon-button"
+    aria-label="Clear"
+    (click)="deleteContent();setcurrentValue('')">
+    <mat-icon>close</mat-icon>
+</button><span>delete list</span>
+<br/>-->
+
+
+<pre [innerHTML]="getcurrentValue()"></pre>
+<pre [innerHTML]="getcurrentValueNER()"></pre>
+<pre [innerHTML]="getcurrentValueAnalogies()"></pre>
+
+<mat-accordion class="example-card">
+
+    <mat-expansion-panel
+        *ngFor="let sentence of sentence"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+    >
+        <mat-expansion-panel-header
+            [expandedHeight]="'auto'"
+            [collapsedHeight]="'auto'">
+            <mat-panel-title style="margin-top:17px;margin-bottom:17px">
+                <mat-chip-list>
+
+                    <mat-chip class="teststyle">{{sentence._similarity}}</mat-chip>
+
+                </mat-chip-list>
+            </mat-panel-title>
+            <mat-panel-title style="margin-top:17px;margin-bottom:17px">
+            </mat-panel-title>
+            
+            <mat-panel-description style="margin-top:17px;margin-bottom:17px">
+                
+                <span class="test2"  innerHTML="{{sentence._originalSentence}}"></span><br><br>
+                <span *ngFor="let tuple of sentence._sentence" class="test" style="width:fit-content;margin-left:5px;height:max-content" [style.font-size.px]="18" [style.color]="getOpacity(tuple[1])" innerHTML="{{tuple[0]}}"></span>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <pre class="test2" innerHTML="{{sentence._sentences}}">
+            </pre>
+    </mat-expansion-panel>
+</mat-accordion>
+<!-- <mat-card *ngFor="let sentence of sentence" class="example-card">
+<mat-card-content > <pre class="test" innerHTML="{{sentence._sentence}}"> </pre>
+</mat-card-content> <mat-card-content> <mat-chip-list> <mat-chip
+class="teststyle">{{sentence._similarity}}</mat-chip> </mat-chip-list>
+</mat-card-content> </mat-card> -->
+<!--<mat-grid-list cols="4"> <mat-grid-tile [colspan]="2" > </mat-grid-tile>
+</mat-grid-list>-->
